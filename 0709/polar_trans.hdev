@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.0" halcon_version="11.0.3.4" cs="566980201">
+<procedure name="main">
+<interface/>
+<body>
+<l>read_image (Image, 'C:/Users/Victoria/Documents/GitHub/Halcon_Learning/0709/sample.bmp')</l>
+<c></c>
+<c>** image 座標/灰階值 **</c>
+<c>** region 座標 **</c>
+<c></c>
+<l>gen_circle (Anita, 1101.22, 1244.31, 947.157)</l>
+<l>gen_circle (Chi_chan, 1101.22, 1244.31, 470.725)</l>
+<c></c>
+<c>** polar_trans **</c>
+<l>cir := 2 * 3.14 * 947.157</l>
+<l>polar_trans_image_ext (Image, PolarTransImage, 1101.22, 1244.31, 0, 6.28319, 470.725, 947.157, cir, 1024, 'nearest_neighbor')</l>
+<c></c>
+<l>write_image (PolarTransImage, 'png', 0, 'C:/Users/Victoria/Documents/GitHub/Halcon_Learning/0709/艱難地展開_今天女人太多.png')</l>
+<c>** difference **</c>
+<l>difference (Anita, Chi_chan, victoria)</l>
+<l>reduce_domain (Image, victoria, yo_wei)</l>
+<c></c>
+<c>** union **</c>
+<l>gen_rectangle1 (MAX, 777.667, -25.5842, 1322.38, 727.847)</l>
+<l>union2 (MAX, Anita, RegionUnion)</l>
+<l>reduce_domain (Image, RegionUnion, ImageReduced)</l>
+<c></c>
+<c>** intersection **</c>
+<l>intersection (MAX, Anita, RegionIntersection)</l>
+<l>reduce_domain (Image, RegionIntersection, ImageReduced1)</l>
+<c></c>
+<c></c>
+<c>** complement **</c>
+<l>complement (Anita, RegionComplement)</l>
+<l>reduce_domain (Image, RegionComplement, ImageReduced2)</l>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
